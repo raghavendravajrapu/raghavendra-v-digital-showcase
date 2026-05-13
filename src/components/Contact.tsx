@@ -30,15 +30,19 @@ export function Contact() {
           vajrapuraghavendra2006@gmail.com
         </motion.a>
 
-        <div className="mt-16 grid sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        <p className="mt-6 text-muted-foreground max-w-xl mx-auto">
+          The fastest way to reach me is email. I usually reply within a day.
+        </p>
+
+        <div className="mt-14 grid sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
           {[
             { icon: FaEnvelope, label: "Email", value: "vajrapuraghavendra2006@gmail.com", href: "mailto:vajrapuraghavendra2006@gmail.com" },
-            { icon: FaLinkedin, label: "LinkedIn", value: "Connect", href: "https://linkedin.com" },
-            { icon: FaGithub, label: "GitHub", value: "Follow", href: "https://github.com" },
-            { icon: FaMapMarkerAlt, label: "Location", value: "Hyderabad, IN", href: "#" },
+            { icon: FaLinkedin, label: "LinkedIn", value: "Connect with me", href: "https://www.linkedin.com/in/raghavendra-vajrapu" },
+            { icon: FaGithub, label: "GitHub", value: "See my code", href: "https://github.com/raghavendravajrapu" },
+            { icon: FaMapMarkerAlt, label: "Based in", value: "Hyderabad, India", href: "#" },
           ].map((c) => (
-            <a key={c.label} href={c.href} target="_blank" rel="noreferrer"
-               className="p-5 rounded-2xl bg-card border border-border hover:border-primary/60 transition-colors text-left tilt-card">
+            <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
+               className="p-5 rounded-2xl bg-card border border-border hover:border-primary/60 transition-colors tilt-card">
               <c.icon className="w-5 h-5 text-primary mb-3" />
               <p className="font-mono text-xs text-muted-foreground">{c.label}</p>
               <p className="text-sm mt-1 truncate">{c.value}</p>
