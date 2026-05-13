@@ -20,14 +20,10 @@ export function Landing() {
           <motion.h1
             initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
-            className="font-display font-extrabold leading-[0.9] tracking-tight"
+            className="font-display font-extrabold leading-[0.95] tracking-tight text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]"
           >
-            <span className="block text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-gradient">
-              RAGHAVENDRA
-            </span>
-            <span className="block text-5xl sm:text-7xl md:text-8xl lg:text-9xl">
-              VAJRAPU
-            </span>
+            <span className="block text-gradient">RAGHAVENDRA</span>
+            <span className="block">VAJRAPU</span>
           </motion.h1>
 
           <motion.p
