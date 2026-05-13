@@ -1,9 +1,10 @@
 import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
 import {
-  SiJavascript, SiReact, SiNodedotjs, SiExpress, SiPostgresql, SiHtml5, SiCss3,
-  SiGit, SiGithub, SiFigma, SiOracle, SiExpo,
+  SiJavascript, SiReact, SiNodedotjs, SiExpress, SiPostgresql, SiHtml5, SiCss,
+  SiGit, SiGithub, SiFigma, SiExpo,
 } from "react-icons/si";
+import { FaCloud } from "react-icons/fa";
 import { FaJava, FaDatabase } from "react-icons/fa";
 
 const groups = [
@@ -14,7 +15,7 @@ const groups = [
       { icon: SiJavascript, label: "JavaScript" },
       { icon: FaDatabase, label: "SQL" },
       { icon: SiHtml5, label: "HTML" },
-      { icon: SiCss3, label: "CSS" },
+      { icon: SiCss, label: "CSS" },
     ],
   },
   {
@@ -30,7 +31,7 @@ const groups = [
     title: "Cloud & DB",
     items: [
       { icon: SiPostgresql, label: "PostgreSQL" },
-      { icon: SiOracle, label: "Oracle Cloud" },
+      { icon: FaCloud, label: "Oracle Cloud" },
       { icon: FaDatabase, label: "Databases" },
     ],
   },
