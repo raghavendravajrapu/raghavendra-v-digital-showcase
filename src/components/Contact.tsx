@@ -1,19 +1,47 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio message from ${form.name || "someone"}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-    window.location.href = `mailto:vajrapuraghavendra2006@gmail.com?subject=${subject}&body=${body}`;
-    setSent(true);
+    if (status === "sending") return;
+    setStatus("sending");
+
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+
+    if (!name || !email || !message) {
+      toast.error("Please fill in all fields.");
+      setStatus("idle");
+      return;
+    }
+    if (name.length > 100 || email.length > 255 || message.length > 2000) {
+      toast.error("One of your fields is too long.");
+      setStatus("idle");
+      return;
+    }
+
+    const { error } = await supabase
+      .from("contact_messages")
+      .insert({ name, email, message });
+
+    if (error) {
+      toast.error("Could not send. Please try again.");
+      setStatus("idle");
+      return;
+    }
+
+    toast.success("Message sent! Raghavendra will get back to you soon.");
+    setForm({ name: "", email: "", message: "" });
+    setStatus("sent");
+    setTimeout(() => setStatus("idle"), 3000);
   };
 
   return (
@@ -52,7 +80,8 @@ export function Contact() {
               <label className="block">
                 <span className="text-xs text-muted-foreground font-mono">Your name</span>
                 <input
-                  required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  required maxLength={100} value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="mt-2 w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary outline-none transition-colors"
                   placeholder="Jane Doe"
                 />
@@ -60,7 +89,8 @@ export function Contact() {
               <label className="block">
                 <span className="text-xs text-muted-foreground font-mono">Your email</span>
                 <input
-                  required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  required type="email" maxLength={255} value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
                   className="mt-2 w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary outline-none transition-colors"
                   placeholder="jane@example.com"
                 />
@@ -69,19 +99,21 @@ export function Contact() {
             <label className="block">
               <span className="text-xs text-muted-foreground font-mono">Message</span>
               <textarea
-                required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
+                required rows={5} maxLength={2000} value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="mt-2 w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary outline-none transition-colors resize-none"
                 placeholder="Tell me about your idea, project or just say hi..."
               />
             </label>
             <button
               type="submit"
-              className="w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:glow transition-all"
+              disabled={status === "sending"}
+              className="w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:glow transition-all disabled:opacity-60"
             >
-              {sent ? "Opening your email…" : "Send message →"}
+              {status === "sending" ? "Sending…" : status === "sent" ? "Sent ✓" : "Send message →"}
             </button>
             <p className="text-xs text-muted-foreground">
-              This will open your email app with the message pre-filled.
+              Your message is delivered straight to Raghavendra's inbox.
             </p>
           </motion.form>
 
@@ -94,7 +126,6 @@ export function Contact() {
             <p className="font-mono text-xs text-accent tracking-widest mb-2">OR REACH OUT DIRECTLY</p>
             {[
               { icon: FaEnvelope, label: "Email", value: "vajrapuraghavendra2006@gmail.com", href: "mailto:vajrapuraghavendra2006@gmail.com" },
-              { icon: FaWhatsapp, label: "WhatsApp", value: "Chat on WhatsApp", href: "https://wa.me/910000000000" },
               { icon: FaLinkedin, label: "LinkedIn", value: "linkedin.com/in/raghavendra-vajrapu", href: "https://www.linkedin.com/in/raghavendra-vajrapu" },
               { icon: FaGithub, label: "GitHub", value: "github.com/raghavendravajrapu", href: "https://github.com/raghavendravajrapu" },
               { icon: FaMapMarkerAlt, label: "Based in", value: "Hyderabad, Telangana, India", href: "#" },
