@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import { supabase } from "@/integrations/supabase/client";
+import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
+
+const EMAILJS_SERVICE_ID = "service_oho7j86";
+const EMAILJS_TEMPLATE_ID = "template_di1n7lk";
+const EMAILJS_PUBLIC_KEY = "b3cRxPdxsiOBpKAPy";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -28,11 +32,21 @@ export function Contact() {
       return;
     }
 
-    const { error } = await supabase
-      .from("contact_messages")
-      .insert({ name, email, message });
-
-    if (error) {
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: name,
+          from_email: email,
+          message,
+          to_email: "vajrapuraghavendra@gmail.com",
+          reply_to: email,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+    } catch (err) {
+      console.error("EmailJS error:", err);
       toast.error("Could not send. Please try again.");
       setStatus("idle");
       return;
@@ -125,7 +139,7 @@ export function Contact() {
           >
             <p className="font-mono text-xs text-accent tracking-widest mb-2">OR REACH OUT DIRECTLY</p>
             {[
-              { icon: FaEnvelope, label: "Email", value: "vajrapuraghavendra2006@gmail.com", href: "mailto:vajrapuraghavendra2006@gmail.com" },
+              { icon: FaEnvelope, label: "Email", value: "vajrapuraghavendra@gmail.com", href: "mailto:vajrapuraghavendra@gmail.com" },
               { icon: FaLinkedin, label: "LinkedIn", value: "linkedin.com/in/raghavendra-vajrapu", href: "https://www.linkedin.com/in/raghavendra-vajrapu" },
               { icon: FaGithub, label: "GitHub", value: "github.com/raghavendravajrapu", href: "https://github.com/raghavendravajrapu" },
               { icon: FaMapMarkerAlt, label: "Based in", value: "Hyderabad, Telangana, India", href: "#" },
