@@ -62,7 +62,7 @@ export function Landing() {
           <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-primary/40 animate-float">
             <img src={avatar} alt="Raghavendra Vajrapu" className="w-full h-full object-cover" />
           </div>
-          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-right-4 px-4 py-2 rounded-full bg-card border border-border font-mono text-xs whitespace-nowrap">
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 lg:-right-4 px-4 py-2 rounded-full bg-card border border-border font-mono text-xs whitespace-nowrap">
             🚀 Available for collabs
           </div>
         </motion.div>
