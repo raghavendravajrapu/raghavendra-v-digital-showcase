@@ -42,7 +42,7 @@ export function Landing() {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.95 }}
-            className="mt-10 flex flex-wrap gap-4 justify-center md:justify-start"
+            className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start"
           >
             <a href="#work" className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:glow transition-all">
               See my work →
