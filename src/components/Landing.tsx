@@ -8,7 +8,7 @@ export function Landing() {
       <div className="absolute -top-32 -left-20 w-[500px] h-[500px] rounded-full bg-primary/30 blur-3xl animate-blob" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-accent/20 blur-3xl animate-blob" style={{ animationDelay: "4s" }} />
 
-      <div className="relative max-w-7xl w-full mx-auto px-6 md:px-10 grid lg:grid-cols-[1.6fr_1fr] gap-14 items-center flex-1">
+      <div className="relative max-w-7xl w-full mx-auto px-6 md:px-10 grid lg:grid-cols-[1.6fr_1fr] xl:grid-cols-[2fr_1fr] gap-14 items-center flex-1">
         <div className="text-center lg:text-left min-w-0">
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
