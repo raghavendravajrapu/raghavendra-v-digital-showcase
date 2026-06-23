@@ -8,7 +8,7 @@ export function Landing() {
       <div className="absolute -top-32 -left-20 w-[500px] h-[500px] rounded-full bg-primary/30 blur-3xl animate-blob" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-accent/20 blur-3xl animate-blob" style={{ animationDelay: "4s" }} />
 
-      <div className="relative max-w-7xl w-full mx-auto px-6 md:px-10 grid lg:grid-cols-[1.3fr_1fr] gap-14 items-center flex-1">
+      <div className="relative max-w-7xl w-full mx-auto px-6 md:px-10 grid lg:grid-cols-[1.6fr_1fr] gap-14 items-center flex-1">
         <div className="text-center lg:text-left min-w-0">
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -20,7 +20,7 @@ export function Landing() {
           <motion.h1
             initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
-            className="font-display font-extrabold leading-[0.95] tracking-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+            className="font-display font-extrabold leading-[0.95] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl"
           >
             <span className="block text-gradient">RAGHAVENDRA</span>
             <span className="block">VAJRAPU</span>
