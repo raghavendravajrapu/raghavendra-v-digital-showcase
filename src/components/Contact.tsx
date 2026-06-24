@@ -40,7 +40,7 @@ export function Contact() {
           from_name: name,
           from_email: email,
           message,
-          to_email: "vajrapuraghavendra@gmail.com",
+          to_email: "vajrapuraghavendra2006@gmail.com",
           reply_to: email,
         },
         { publicKey: EMAILJS_PUBLIC_KEY }
@@ -139,7 +139,7 @@ export function Contact() {
           >
             <p className="font-mono text-xs text-accent tracking-widest mb-2">OR REACH OUT DIRECTLY</p>
             {[
-              { icon: FaEnvelope, label: "Email", value: "vajrapuraghavendra@gmail.com", href: "mailto:vajrapuraghavendra@gmail.com" },
+              { icon: FaEnvelope, label: "Email", value: "vajrapuraghavendra2006@gmail.com", href: "mailto:vajrapuraghavendra2006@gmail.com" },
               { icon: FaLinkedin, label: "LinkedIn", value: "linkedin.com/in/raghavendra-vajrapu", href: "https://www.linkedin.com/in/raghavendra-vajrapu" },
               { icon: FaGithub, label: "GitHub", value: "github.com/raghavendravajrapu", href: "https://github.com/raghavendravajrapu" },
               { icon: FaMapMarkerAlt, label: "Based in", value: "Hyderabad, Telangana, India", href: "#" },
