@@ -4,9 +4,9 @@ import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 
-const EMAILJS_SERVICE_ID = "service_oho7j86";
-const EMAILJS_TEMPLATE_ID = "template_di1n7lk";
-const EMAILJS_PUBLIC_KEY = "b3cRxPdxsiOBpKAPy";
+const EMAILJS_SERVICE_ID = "service_oic0moe";
+const EMAILJS_TEMPLATE_ID = "template_wjysnbi";
+const EMAILJS_PUBLIC_KEY = "FNSvGhAgOuxLWGBQ3";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
