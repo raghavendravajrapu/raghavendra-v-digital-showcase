@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 
 const EMAILJS_SERVICE_ID = "service_oic0moe";
-const EMAILJS_TEMPLATE_ID = "template_wjysnbi";
+const EMAILJS_TEMPLATE_ID = "template_3qhrqlb";
 const EMAILJS_PUBLIC_KEY = "FNSvGhAgOuxLWGBQ3";
 
 export function Contact() {
