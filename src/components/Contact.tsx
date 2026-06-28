@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import emailjs from "@emailjs/browser";
+import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
-
-const EMAILJS_SERVICE_ID = "service_oic0moe";
-const EMAILJS_TEMPLATE_ID = "template_3qhrqlb";
-const EMAILJS_PUBLIC_KEY = "FNSvGhAgOuxLWGBQ3";
+import { sendContactMessage } from "@/lib/contact.functions";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const sendMessage = useServerFn(sendContactMessage);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,20 +31,9 @@ export function Contact() {
     }
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: name,
-          from_email: email,
-          message,
-          to_email: "vajrapuraghavendra2006@gmail.com",
-          reply_to: email,
-        },
-        { publicKey: EMAILJS_PUBLIC_KEY }
-      );
+      await sendMessage({ data: { name, email, message } });
     } catch (err) {
-      console.error("EmailJS error:", err);
+      console.error("Contact send error:", err);
       toast.error("Could not send. Please try again.");
       setStatus("idle");
       return;
