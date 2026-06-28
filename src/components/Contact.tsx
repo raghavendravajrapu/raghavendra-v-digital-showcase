@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import { useServerFn } from "@tanstack/react-start";
+import { useServerFn } from "@tanstack/react-start/server-functions-client";
 import { toast } from "sonner";
 import { sendContactMessage } from "@/lib/contact.functions";
 
